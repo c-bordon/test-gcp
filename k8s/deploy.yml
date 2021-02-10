@@ -1,17 +1,17 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: abargon-test
+  name: demo-pipeline
 spec:
   replicas: 2
   template:
     metadata:
       labels:
-        editor: vscode
+        app: demo-pipeline
     spec:
       containers:
-      - name: abargon
-        image: gcr.io/testnubity/abargon-test
+      - name: demo-pipeline
+        image: gcr.io/testnubity/demo-pipeline
         resources:
           limits:
             memory: "500Mi"
