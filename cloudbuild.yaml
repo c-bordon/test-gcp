@@ -1,0 +1,14 @@
+steps:
+# build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/abargon-test:$COMMIT_SHA', '.']
+# push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/abargon-test:$COMMIT_SHA']
+# Upload k8s manifest to gcs
+artifacts:
+  objects:
+    location: 'gs://test-abargon/'
+    paths: ['k8s/*.yml']
+images:
+- 'gcr.io/$PROJECT_ID/abargon-test:$COMMIT_SHA'
