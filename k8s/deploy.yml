@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: demo-pipeline
-        image: gcr.io/testnubity/demo-pipeline
+        image: gcr.io/sistemas-portal-servicios-cicd/demo-pipeline
         resources:
           limits:
             memory: "500Mi"
