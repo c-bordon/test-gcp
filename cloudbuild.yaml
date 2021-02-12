@@ -1,10 +1,12 @@
 steps:
 # build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/demo-pipeline:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/demo-pipeline:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/demo-pipeline:latest','.']
 # push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/demo-pipeline:$COMMIT_SHA']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/demo-pipeline:latest']
 # Upload k8s manifest to gcs
 artifacts:
   objects:
@@ -12,3 +14,4 @@ artifacts:
     paths: ['k8s/*.yml']
 images:
 - 'gcr.io/$PROJECT_ID/demo-pipeline:$COMMIT_SHA'
+- 'gcr.io/$PROJECT_ID/demo-pipeline:latest'
