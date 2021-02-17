@@ -15,3 +15,4 @@ artifacts:
 images:
 - 'gcr.io/$PROJECT_ID/demo-pipeline:$COMMIT_SHA'
 - 'gcr.io/$PROJECT_ID/demo-pipeline:latest'
+
