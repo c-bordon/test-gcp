@@ -4,6 +4,9 @@ metadata:
   name: demo-pipeline
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: demo-pipeline
   template:
     metadata:
       labels:
