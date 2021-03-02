@@ -1,0 +1,14 @@
+steps:
+# build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/test-tf:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/test-tf:latest','.']
+# push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/test-tf:$COMMIT_SHA']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/test-tf:latest']
+
+images:
+- 'gcr.io/$PROJECT_ID/test-tf:$COMMIT_SHA'
+- 'gcr.io/$PROJECT_ID/test-tf:latest'
+
