@@ -7,7 +7,11 @@ steps:
   args: ['push', 'gcr.io/$PROJECT_ID/test-tf:$COMMIT_SHA']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/test-tf:latest']
-
+# Upload k8s manifest to gcs
+artifacts:
+  objects:
+    location: 'gs://test-tf-1/$_BASE_BRANCH/'
+    paths: ['k8s/$_BASE_BRANCH/*.yml']
 images:
 - 'gcr.io/$PROJECT_ID/test-tf:$COMMIT_SHA'
 - 'gcr.io/$PROJECT_ID/test-tf:latest'
